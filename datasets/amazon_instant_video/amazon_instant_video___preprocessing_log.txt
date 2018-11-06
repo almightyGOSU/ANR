@@ -1,0 +1,114 @@
+[args from argparse.ArgumentParser().parse_args()]
+command: preprocessing_simple.py -d amazon_instant_video -dev_test_in_train 1
+dataset: amazon_instant_video
+dataset_maximum_size: 5000000
+dev_test_in_train: True
+maxDL: 500
+minReviews: 1
+minRL: 10
+random_seed: 1337
+train_ratio: 0.8
+vocab: 50000
+
+[INPUT] Source Folder:       ../datasets/
+[INPUT] Reviews/Ratings:     ../datasets/amazon_instant_video.json
+
+[OUTPUT] Category Folder:    ../datasets/amazon_instant_video/
+[OUTPUT] env:                ../datasets/amazon_instant_video/amazon_instant_video_env.pkl
+[OUTPUT] info:               ../datasets/amazon_instant_video/amazon_instant_video_info.pkl
+[OUTPUT] split_train:        ../datasets/amazon_instant_video/amazon_instant_video_split_train.pkl
+[OUTPUT] split_dev:          ../datasets/amazon_instant_video/amazon_instant_video_split_dev.pkl
+[OUTPUT] split_test:         ../datasets/amazon_instant_video/amazon_instant_video_split_test.pkl
+[OUTPUT] uid_userDoc:        ../datasets/amazon_instant_video/amazon_instant_video_uid_userDoc.npy
+[OUTPUT] iid_itemDoc:        ../datasets/amazon_instant_video/amazon_instant_video_iid_itemDoc.npy
+
+[Settings]
+Min reviews for user/item: 1
+Min review length to qualify as an user-item interaction: 10
+Max words for user/item document: 500 (For truncating/padding to get a fixed-size representation)
+Top-50000 words in vocabulary being utilized!
+
+
+Initial pass of reviews to get the user-item interactions!
+[Initial stats] Users: 426,922, Items: 23,965, Ratings: 583,933, Density: 0.0000571
+
+
+No change in # of users or # of items!
+
+[Final stats] Users: 426,922, Items: 23,965, Ratings: 583,933, Density: 0.0000571
+
+
+Second pass of reviews to get the rating, date, and tokenized review!
+[Current stats] Users: 426,922, Items: 23,965, Ratings: 583,933, Density: 0.0000571
+
+Filtering user-item interactions based on minimum review length of 10 tokens..
+[Current stats] Users: 418,672, Items: 23,804, Ratings: 572,751, Density: 0.0000575
+
+
+No change in # of users or # of items!
+
+[Final stats] Users: 418,672, Items: 23,804, Ratings: 572,751, Density: 0.0000575
+80.0% of ALL reviews are RANDOMLY selected for TRAIN, another 10.0% RANDOMLY selected for DEV, and remaining 10.0% used for TEST.
+
+[Initial Stats] Total Interactions: 572,751, TRAIN: 458,200 (80.00%), DEV: 57,275 (10.00%), TEST: 57,276 (10.00%)
+
+
+Removing users & items who do not appear in the training set, from the dev and test sets..
+
+Removed 36,614 interactions from DEV and 36,470 interactions from TEST! (i.e. Those belonging to Users/Items which do not appear in TRAIN)
+
+[Current Stats] Total Interactions: 499,667, TRAIN: 458,200 (91.70%), DEV: 20,661 (4.13%), TEST: 20,806 (4.16%)
+
+
+
+
+[FINAL Stats] Users: 348,665, Items: 22,083, Ratings: 499,667, Density: 0.0000649
+
+[FINAL Stats] Total Interactions: 499,667, TRAIN: 458,200 (91.70%), DEV: 20,661 (4.13%), TEST: 20,806 (4.16%)
+
+[FINAL Stats][TRAIN] Users: 348,665, Items: 22,083, Ratings: 458,200
+[FINAL Stats][DEV]   Users: 17,956, Items: 4,977, Ratings: 20,661
+[FINAL Stats][TEST]  Users: 18,106, Items: 5,028, Ratings: 20,806
+
+
+
+Consolidating user/item reviews from TRAINING set
+
+Creating user docs from TRAINING set
+Creating item docs from TRAINING set
+
+Minimum User Doc Len: 10, Minimum Item Doc Len: 10
+
+Original number of words (based on USER & ITEM documents constructed from TRAINING set): 134,915
+For the vocabulary, we are only using the 50,000 most frequent words
+Current number of words: 50,000
+
+[TRAINING] Lowest Rating: 1.00, Highest Rating: 5.00, Average Rating: 4.313
+[TRAINING] [1.00: 28982], [2.00: 18531], [3.00: 32396], [4.00: 78299], [5.00: 299992]
+
+[DEV] Lowest Rating: 1.00, Highest Rating: 5.00, Average Rating: 4.259
+[DEV] [1.00: 1151], [2.00: 973], [3.00: 1896], [4.00: 3986], [5.00: 12655]
+
+[TESTING] Lowest Rating: 1.00, Highest Rating: 5.00, Average Rating: 4.245
+[TESTING] [1.00: 1219], [2.00: 997], [3.00: 1855], [4.00: 4127], [5.00: 12608]
+
+
+Saving all required files for "amazon_instant_video"..
+Training Set:         ../datasets/amazon_instant_video/amazon_instant_video_split_train.pkl
+Validation Set:       ../datasets/amazon_instant_video/amazon_instant_video_split_dev.pkl
+Test Set:             ../datasets/amazon_instant_video/amazon_instant_video_split_test.pkl
+Environment:          ../datasets/amazon_instant_video/amazon_instant_video_env.pkl
+Info:                 ../datasets/amazon_instant_video/amazon_instant_video_info.pkl
+
+Creating numpy matrix for uid_userDoc..
+User Document Matrix: (348665, 500)
+User Document Matrix: ../datasets/amazon_instant_video/amazon_instant_video_uid_userDoc.npy
+
+Creating numpy matrix for iid_itemDoc..
+Item Document Matrix: (22083, 500)
+Item Document Matrix: ../datasets/amazon_instant_video/amazon_instant_video_iid_itemDoc.npy
+
+All required files for "amazon_instant_video" successfully saved to '../datasets/amazon_instant_video/'
+
+Preprocessing for "amazon_instant_video" done after 128.99 seconds (2.15 minutes)
+
