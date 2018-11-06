@@ -1,0 +1,31 @@
+cd to 'preprocessing' folder
+
+
+run the following command:
+python3 pretrained_vectors_simple.py -d amazon_instant_video
+
+
+
+NOTE:
+    you should have the pretrained word embeddings stored somewhere
+    to specify the location of your pretrained word embeddings, go to 'pretrained_vectors_simple.py'
+    change the following line:
+    input_embeddings    = "../../GoogleNews-vectors-negative300.bin"
+
+
+
+There should be 2 files created in the corresponding folder, e.g. datasets/amazon_instant_video/
+
+The log file:
+(1) E.g. datasets/amazon_instant_video/amazon_instant_video___pretrained_vectors_log.txt
+
+Files required to run the model:
+(2) E.g. datasets/amazon_instant_video/amazon_instant_video_wid_wordEmbed.npy
+
+
+
+Purpose of files:
+(2) contains the mapping for wid to wordEmbed, and each wordEmbed is a vector
+    each wordEmbed either comes from the pretrained word embeddings file, or randomly initialized if not found in the set of pretrained words
+
+
